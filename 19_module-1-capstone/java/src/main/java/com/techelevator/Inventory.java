@@ -11,7 +11,8 @@ import java.util.TreeSet;
 public class Inventory {
 	//Inventory of Slot ID's and associated snacks.
 	TreeMap<String, ArrayList<Snack>> slots = new TreeMap<String, ArrayList<Snack>>();
-	
+	int[] snackQuantities = new int[16];
+	int s; //stock
 	/**
 	 * @return the slots
 	 */
@@ -19,13 +20,13 @@ public class Inventory {
 		return slots;
 	}
 	
+	public int[] getSnackQuantities() {
+		return snackQuantities;
+	}
+
 	public Inventory() {
 		//Got the file with the inventory.
 		File input = new File("vendingmachine.csv");
-		//catch(NullPointerException error) {
-			// handle this later
-		//}
-		
 		//Created a place to store the data.
 		String line;
 		
@@ -34,10 +35,11 @@ public class Inventory {
 			while (fileScanner.hasNextLine()) {
 				line = fileScanner.nextLine();
 				String words[] = line.split("\\|");
-				Snack newSnack = new Snack(words[1], Double.parseDouble(words[2]), words[3]);
+				Snack newSnack = new Snack(words[1], Double.parseDouble(words[2]), words[3], 5);
 				ArrayList<Snack> newSnacks = new ArrayList<Snack>();
 				for(int i = 0; i < 5; i++) {
 					newSnacks.add(newSnack);
+					snackQuantities[i] = 5;
 				}
 				slots.put(words[0], newSnacks);
 			}

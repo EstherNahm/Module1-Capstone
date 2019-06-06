@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class Dispenser extends Transaction {
+public class Dispenser {
 	private double changeToGiveBack;
 	private int numOfNickels;
 	private int numOfDimes;
