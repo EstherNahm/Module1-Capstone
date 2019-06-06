@@ -66,7 +66,8 @@ public class VendingMachineCLI extends VendingMachineClass{
 	}
 	
 	public static void purchaseItems() {	 // static attribute used as method is not associated with specific object instance
-		//ourVendingMachine.makePurchases();
+		ourVendingMachine.insertCash();
+		ourVendingMachine.selectProduct();
 	}
 	
 	public static void endMethodProcessing() { // static attribute used as method is not associated with specific object instance

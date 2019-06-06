@@ -1,6 +1,7 @@
 package com.techelevator;
 
 public class Snack {
+	
 	private String type;
 	private String name;
 	private double price;
@@ -18,4 +19,17 @@ public class Snack {
 	public String getType() {
 		return type;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return name + "|" + price + "|" + type;
+	}
+	
+	
+	
+	
 }
+
+
