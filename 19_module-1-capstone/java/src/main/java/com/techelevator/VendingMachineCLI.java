@@ -1,7 +1,7 @@
 package com.techelevator;
-import java.io.File;
-import java.util.Scanner;
 
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 /**************************************************************************************************************************
 *  This is your Vending Machine Command Line Interface (CLI) class
 *  
@@ -11,7 +11,7 @@ import java.util.Scanner;
 ***************************************************************************************************************************/
 import com.techelevator.view.Menu;
 
-public class VendingMachineCLI {
+public class VendingMachineCLI extends VendingMachineClass{
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE      = "Purchase";
@@ -22,7 +22,7 @@ public class VendingMachineCLI {
 													    };
 	
 	private Menu vendingMenu;              // Menu object to be used by an instance of this class
-	
+	private static VendingMachineClass ourVendingMachine = new VendingMachineClass();
 	public VendingMachineCLI(Menu menu) {  // Constructor - user will pas a menu for this class to use
 		this.vendingMenu = menu;           // Make the Menu the user object passed, our Menu
 	}
@@ -61,13 +61,12 @@ public class VendingMachineCLI {
 /********************************************************************************************************
  * Methods used to perform processing
  ********************************************************************************************************/
-	public static void displayItems() {      // static attribute used as method is not associated with specific object instance
-		
-		// printInventory(); 
+	public static void displayItems(){      // static attribute used as method is not associated with specific object instance
+		ourVendingMachine.printInventory();
 	}
 	
 	public static void purchaseItems() {	 // static attribute used as method is not associated with specific object instance
-		 
+		//ourVendingMachine.makePurchases();
 	}
 	
 	public static void endMethodProcessing() { // static attribute used as method is not associated with specific object instance

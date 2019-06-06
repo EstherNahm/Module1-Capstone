@@ -7,28 +7,27 @@ public class Dispenser extends Transaction {
 	private int numOfQuarters;
 
 	public void Dispenser() {
-		if (changeToGiveBack % 5 == 0) {
-			if (changeToGiveBack % 10 == 0) {
-				if (changeToGiveBack % 25 == 0) {
-					
-				}
+		
+	}
+	public void dispenseProduct() {
+		//Calculate change to give back to customer.
+		//changeToGiveBack = amountPutIn - totalCost;
+		//Reset the balance to 0.00.
+		//balance = 0.00;
+		//Display customer consuming product.
+		/*for(int i = 0; i < ?????; i++) {
+			if(Snack.getType().equalsIgnoreCase("chips")) {
+				System.out.println("Crunch Crunch, Yum!");
 			}
-		}
-		
-		/*balance = 0.00;
-		
-		if (type.equalsIgnoreCase("chip")) {
-			System.out.println("Crunch Crunch, Yum!");
-		}
-		if (type.equalsIgnoreCase("candy")) {
-			System.out.println("Munch Munch, Yum!");
-		}
-		if (type.equalsIgnoreCase("beverage")) {
-			System.out.println("Glug Glug, Yum!");
-		}
-		if (type.equalsIgnoreCase("gum")) {
-			System.out.println("Chew Chew, Yum!");
-		}
-	 */
+			if(Snack.getType().equalsIgnoreCase("candy")) {
+				System.out.println("Munch Munch, Yum!");
+			}
+			if(Snack.getType().equalsIgnoreCase("beverage")) {
+				System.out.println("Glug Glug, Yum!");
+			}
+			if(Snack.getType().equalsIgnoreCase("gum")){ 
+				System.out.println("Chew Chew, Yum!");
+			}
+		}*/
 	}
 }

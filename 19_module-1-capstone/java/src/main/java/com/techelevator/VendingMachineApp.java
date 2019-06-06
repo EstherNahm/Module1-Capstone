@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.io.FileNotFoundException;
+
 import com.techelevator.view.Menu;   // Bring in Menu class provided
 
 public class VendingMachineApp {
@@ -7,6 +9,7 @@ public class VendingMachineApp {
 	*  This is the application program to instantiate a Vending Machine as start it running
 	*  
 	*  DO NOT PUT ANY NEW CODE HERE!
+	 * @throws FileNotFoundException 
 	***************************************************************************************************************************/
 		
 		public static void main(String[] args) {
