@@ -1,6 +1,7 @@
 package com.techelevator;
 
-public class Transaction extends VendingMachineClass{
+public class Transaction {
+	
 	public void Transaction() {
 	}
 }

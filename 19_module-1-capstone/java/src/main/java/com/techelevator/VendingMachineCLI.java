@@ -1,4 +1,7 @@
 package com.techelevator;
+import java.io.File;
+import java.util.Scanner;
+
 /**************************************************************************************************************************
 *  This is your Vending Machine Command Line Interface (CLI) class
 *  
@@ -59,11 +62,12 @@ public class VendingMachineCLI {
  * Methods used to perform processing
  ********************************************************************************************************/
 	public static void displayItems() {      // static attribute used as method is not associated with specific object instance
-		// Code to display items in Vending Machine
+		
+		// printInventory(); 
 	}
 	
 	public static void purchaseItems() {	 // static attribute used as method is not associated with specific object instance
-		// Code to purchase items from Vending Machine
+		 
 	}
 	
 	public static void endMethodProcessing() { // static attribute used as method is not associated with specific object instance

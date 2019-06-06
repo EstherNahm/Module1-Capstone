@@ -1,7 +1,7 @@
 package com.techelevator;
 
-public class Selector extends VendingMachineClass{
+public class Selector {
 	String userChoice;
-	public void SelectorClass() {
+	public void Selector() {
 	}
 }

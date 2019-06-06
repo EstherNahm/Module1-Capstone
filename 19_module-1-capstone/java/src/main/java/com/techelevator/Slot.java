@@ -1,7 +1,8 @@
 package com.techelevator;
 
-public class Slot extends VendingMachineClass{
+public class Slot {
 	private String slotID;
-	public void SlotClass() {
+	
+	public void Slot() {
 	}
 }
