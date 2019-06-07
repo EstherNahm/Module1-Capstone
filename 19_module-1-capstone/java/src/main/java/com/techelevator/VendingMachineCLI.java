@@ -21,17 +21,26 @@ public class VendingMachineCLI extends VendingMachineClass{
 													    MAIN_MENU_OPTION_EXIT
 													    };
 	
-	private Menu vendingMenu;              // Menu object to be used by an instance of this class
+	//menu items for Purchase Menu 
+	private static final String PURCHASE_MENU_OPTION_FEED_MONEY = "Feed Money";
+	private static final String PURCHASE_MENU_OPTION_SELECT_PRODUCT = "Select Product";
+	private static final String PURCHASE_MENU_OPTION_FINISH_TRANSACTION          = "Exit";
+	private static final String[] PURCHASE_MENU_OPTIONS = { PURCHASE_MENU_OPTION_FEED_MONEY,
+													    PURCHASE_MENU_OPTION_SELECT_PRODUCT,
+													    PURCHASE_MENU_OPTION_FINISH_TRANSACTION,
+													    };
+	
+	private static Menu vendingMenu;              // Menu object to be used by an instance of this class
 	private static VendingMachineClass ourVendingMachine = new VendingMachineClass();
-	public VendingMachineCLI(Menu menu) {  // Constructor - user will pas a menu for this class to use
-		this.vendingMenu = menu;           // Make the Menu the user object passed, our Menu
+	public VendingMachineCLI(Menu menu) {  // Constructor - user will pass a menu for this class to use
+		vendingMenu = menu;           // Make the Menu the user object passed, our Menu
 	}
 	/**************************************************************************************************************************
 	*  VendingMachineCLI main processing loop
 	*  
 	*  Display the main menu and process option chosen
 	***************************************************************************************************************************/
-
+	
 	public void run() {
 
 		boolean shouldProcess = true;         // Loop control variable
@@ -61,14 +70,48 @@ public class VendingMachineCLI extends VendingMachineClass{
 /********************************************************************************************************
  * Methods used to perform processing
  ********************************************************************************************************/
-	public static void displayItems(){      // static attribute used as method is not associated with specific object instance
+	//********put the methods here
+	public static void displayItems() {      // static attribute used as method is not associated with specific object instance
 		ourVendingMachine.printInventory();
 	}
 	
 	public static void purchaseItems() {	 // static attribute used as method is not associated with specific object instance
-		ourVendingMachine.insertCash();
-		ourVendingMachine.selectProduct();
+	
+		boolean shouldProcess = true;         // Loop control variable
+		
+		while(shouldProcess) {                // Loop until user indicates they want to exit
+		String choice = (String)vendingMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);  // Display menu and get choice
+		
+		switch(choice) {  
+		
+		
+	case PURCHASE_MENU_OPTION_FEED_MONEY:
+		insertMoney();           // method to display items in purchase menu 
+		break;                    
+
+	case PURCHASE_MENU_OPTION_SELECT_PRODUCT:
+		selectProduct();          // method to pick item from purchase menu 
+		break;                    
+
+	case PURCHASE_MENU_OPTION_FINISH_TRANSACTION:
+		exitOut();    // method to finish out 
+		shouldProcess = false;    // Set variable to end loop
+		break;                    // Exit switch statement
+		
+		
+		
+		//ourVendingMachine.insertCash();
+		//ourVendingMachine.selectProduct();
+		//ourVendingMachine.purchaseMenu();
+		
+		}	
 	}
+		return;
+	}
+	
+	//private static void selectProduct() {}
+		// TODO Auto-generated method stub
+		
 	
 	public static void endMethodProcessing() { // static attribute used as method is not associated with specific object instance
 		// Any processing that needs to be done before method ends

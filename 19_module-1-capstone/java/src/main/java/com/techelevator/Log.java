@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class Log extends Dispenser {
+public class Log {
 	public void Log() {
 	}
 }

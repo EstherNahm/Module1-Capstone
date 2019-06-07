@@ -10,9 +10,8 @@ import java.util.TreeSet;
 
 public class Inventory {
 	//Inventory of Slot ID's and associated snacks.
-	TreeMap<String, ArrayList<Snack>> slots = new TreeMap<String, ArrayList<Snack>>();
-	int[] snackQuantities = new int[16];
-	int s; //stock
+	private static TreeMap<String, ArrayList<Snack>> slots = new TreeMap<String, ArrayList<Snack>>();
+	//int[] snackQuantities = new int[16];
 	/**
 	 * @return the slots
 	 */
@@ -20,9 +19,9 @@ public class Inventory {
 		return slots;
 	}
 	
-	public int[] getSnackQuantities() {
-		return snackQuantities;
-	}
+//	public int[] getSnackQuantities() {
+//		return snackQuantities;
+//	}	
 
 	public Inventory() {
 		//Got the file with the inventory.
@@ -39,15 +38,15 @@ public class Inventory {
 				ArrayList<Snack> newSnacks = new ArrayList<Snack>();
 				for(int i = 0; i < 5; i++) {
 					newSnacks.add(newSnack);
-					snackQuantities[i] = 5;
+					//snackQuantities[i] = 5;
 				}
 				slots.put(words[0], newSnacks);
 			}
 		}catch(FileNotFoundException e) {
 			
 		}
-
 	}
+		
 	public void printContents() {
 		Set <String>inventoryKeys = slots.keySet();
 		for(String slotID : inventoryKeys) {

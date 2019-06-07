@@ -25,11 +25,7 @@ public class Snack {
 		return stock;
 	}
 	public void setStock(int stock) {
-		if(stock > 0) {
 			this.stock = stock;
-		}else {
-			stock = 0;
-		}
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
