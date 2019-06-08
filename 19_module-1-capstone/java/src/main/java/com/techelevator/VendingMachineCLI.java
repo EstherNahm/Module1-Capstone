@@ -2,6 +2,8 @@ package com.techelevator;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.TreeMap;
+
 /**************************************************************************************************************************
 *  This is your Vending Machine Command Line Interface (CLI) class
 *  
@@ -20,16 +22,14 @@ public class VendingMachineCLI extends VendingMachineClass{
 													    MAIN_MENU_OPTION_PURCHASE,
 													    MAIN_MENU_OPTION_EXIT
 													    };
-	
 	//menu items for Purchase Menu 
-	private static final String PURCHASE_MENU_OPTION_FEED_MONEY = "Feed Money";
-	private static final String PURCHASE_MENU_OPTION_SELECT_PRODUCT = "Select Product";
-	private static final String PURCHASE_MENU_OPTION_FINISH_TRANSACTION          = "Exit";
+	private static final String PURCHASE_MENU_OPTION_FEED_MONEY                  = "Feed Money";
+	private static final String PURCHASE_MENU_OPTION_SELECT_PRODUCT              = "Select Product";
+	private static final String PURCHASE_MENU_OPTION_FINISH_TRANSACTION          = "Finish Transaction";
 	private static final String[] PURCHASE_MENU_OPTIONS = { PURCHASE_MENU_OPTION_FEED_MONEY,
 													    PURCHASE_MENU_OPTION_SELECT_PRODUCT,
 													    PURCHASE_MENU_OPTION_FINISH_TRANSACTION,
 													    };
-	
 	private static Menu vendingMenu;              // Menu object to be used by an instance of this class
 	private static VendingMachineClass ourVendingMachine = new VendingMachineClass();
 	public VendingMachineCLI(Menu menu) {  // Constructor - user will pass a menu for this class to use
@@ -39,9 +39,10 @@ public class VendingMachineCLI extends VendingMachineClass{
 	*  VendingMachineCLI main processing loop
 	*  
 	*  Display the main menu and process option chosen
+	 * @throws FileNotFoundException 
 	***************************************************************************************************************************/
 	
-	public void run() {
+	public void run() throws FileNotFoundException {
 
 		boolean shouldProcess = true;         // Loop control variable
 		
@@ -56,6 +57,7 @@ public class VendingMachineCLI extends VendingMachineClass{
 					break;                    // Exit switch statement
 			
 				case MAIN_MENU_OPTION_PURCHASE:
+					System.out.printf("Current Money Provided: $ %.2f", getBalance(), "0");
 					purchaseItems();          // invoke method to purchase items from Vending Machine
 					break;                    // Exit switch statement
 			
@@ -75,37 +77,27 @@ public class VendingMachineCLI extends VendingMachineClass{
 		ourVendingMachine.printInventory();
 	}
 	
-	public static void purchaseItems() {	 // static attribute used as method is not associated with specific object instance
+	public static void purchaseItems() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
 	
 		boolean shouldProcess = true;         // Loop control variable
 		
 		while(shouldProcess) {                // Loop until user indicates they want to exit
-		String choice = (String)vendingMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);  // Display menu and get choice
-		
-		switch(choice) {  
-		
-		
-	case PURCHASE_MENU_OPTION_FEED_MONEY:
-		insertMoney();           // method to display items in purchase menu 
-		break;                    
-
-	case PURCHASE_MENU_OPTION_SELECT_PRODUCT:
-		selectProduct();          // method to pick item from purchase menu 
-		break;                    
-
-	case PURCHASE_MENU_OPTION_FINISH_TRANSACTION:
-		exitOut();    // method to finish out 
-		shouldProcess = false;    // Set variable to end loop
-		break;                    // Exit switch statement
-		
-		
-		
-		//ourVendingMachine.insertCash();
-		//ourVendingMachine.selectProduct();
-		//ourVendingMachine.purchaseMenu();
-		
-		}	
-	}
+			String choice = (String)vendingMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS); 
+			 // Display menu and get choice
+			switch(choice) { 
+				
+				case PURCHASE_MENU_OPTION_FEED_MONEY:
+					insertMoney();           // method to display items in purchase menu 
+					break;                    
+				case PURCHASE_MENU_OPTION_SELECT_PRODUCT:
+					selectProduct();          // method to pick item from purchase menu 
+					break;                    
+				case PURCHASE_MENU_OPTION_FINISH_TRANSACTION:
+					exitOut();    // method to finish out 
+					shouldProcess = false;// Set variable to end loop
+					break;                    // Exit switch statement
+			}
+		}
 		return;
 	}
 	
@@ -114,6 +106,6 @@ public class VendingMachineCLI extends VendingMachineClass{
 		
 	
 	public static void endMethodProcessing() { // static attribute used as method is not associated with specific object instance
-		// Any processing that needs to be done before method ends
+		ourVendingMachine.printSales();
 	}
 }

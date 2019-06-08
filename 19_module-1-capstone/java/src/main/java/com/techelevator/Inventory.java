@@ -9,36 +9,37 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Inventory {
-	//Inventory of Slot ID's and associated snacks.
+	//inventory of Slot ID's and associated snacks 
 	private static TreeMap<String, ArrayList<Snack>> slots = new TreeMap<String, ArrayList<Snack>>();
-	//int[] snackQuantities = new int[16];
+	
 	/**
 	 * @return the slots
 	 */
 	public TreeMap<String, ArrayList<Snack>> getSlots() {
 		return slots;
 	}
-	
-//	public int[] getSnackQuantities() {
-//		return snackQuantities;
-//	}	
 
 	public Inventory() {
-		//Got the file with the inventory.
+		//get the file with the inventory
 		File input = new File("vendingmachine.csv");
-		//Created a place to store the data.
+		
+		//String to store data
 		String line;
 		
 		try {
 		Scanner fileScanner = new Scanner(input);
+			
 			while (fileScanner.hasNextLine()) {
 				line = fileScanner.nextLine();
+				
+				//split the files at | deliminator 
 				String words[] = line.split("\\|");
-				Snack newSnack = new Snack(words[1], Double.parseDouble(words[2]), words[3], 5);
+				
+				//assign index [1]-[3] to arrayList<Snack> which is the value of TreeMap slots
+				Snack newSnack = new Snack(words[1], Double.parseDouble(words[2]), words[3]);
 				ArrayList<Snack> newSnacks = new ArrayList<Snack>();
 				for(int i = 0; i < 5; i++) {
 					newSnacks.add(newSnack);
-					//snackQuantities[i] = 5;
 				}
 				slots.put(words[0], newSnacks);
 			}
@@ -49,8 +50,14 @@ public class Inventory {
 		
 	public void printContents() {
 		Set <String>inventoryKeys = slots.keySet();
+		
 		for(String slotID : inventoryKeys) {
-			System.out.println(slotID + "|" + slots.get(slotID).get(1));
+			if(!(slots.get(slotID).size() <= 0)) {
+				System.out.println(slotID + "|" + slots.get(slotID).get(0).getName() + " " + slots.get(slotID).get(0).getPrice() + " " + slots.get(slotID).get(0).getType());
+			} else {
+				System.out.println(slotID + "|" + "SOLD OUT");
+			}
+		
 		}
 	}
 }
