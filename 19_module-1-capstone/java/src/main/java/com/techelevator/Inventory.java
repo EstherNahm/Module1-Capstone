@@ -26,9 +26,9 @@ public class Inventory {
 		//String to store data
 		String line;
 		
+		//scan in lines from file 
 		try {
 		Scanner fileScanner = new Scanner(input);
-			
 			while (fileScanner.hasNextLine()) {
 				line = fileScanner.nextLine();
 				

@@ -72,11 +72,11 @@ public class VendingMachineCLI extends VendingMachineClass{
 /********************************************************************************************************
  * Methods used to perform processing
  ********************************************************************************************************/
-	//********put the methods here
 	public static void displayItems() {      // static attribute used as method is not associated with specific object instance
 		ourVendingMachine.printInventory();
 	}
 	
+	//loop for purchase menu 
 	public static void purchaseItems() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
 	
 		boolean shouldProcess = true;         // Loop control variable

@@ -36,6 +36,7 @@ public class VendingMachineClass {
 	}
 
 	public VendingMachineClass() {
+		//create new file and write to it 
 		try {
 			newFile = new File("Log.txt");
 			newFile.createNewFile();
@@ -70,10 +71,16 @@ public class VendingMachineClass {
 	public double getPriceOfItem() {
 		return priceOfItem;
 	}
+	
+	//printContents menthod in inventory = toString 
 	public void printInventory() {
 		inventory.printContents();
 	}
+	
+	//method for user feeding money into machine 
 	public static void insertMoney() throws FileNotFoundException {
+		
+		//ask for input 
 		System.out.println("Only insert $1.00s, $2.00s, $5.00s or $10.00s.");
 		
 		//Scan for inserted cash
@@ -84,7 +91,7 @@ public class VendingMachineClass {
 		balance += cashInserted;
 		System.out.printf("Current balance: %.2f", balance, "0");
 		
-		
+		//time stamp log of this transaction 
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
     	String dateString = dateFormat.format(new Date()).toString();
     	Log thisAudit = new Log(dateString, "FEED MONEY:", cashInserted, balance);
@@ -119,8 +126,9 @@ public class VendingMachineClass {
 	    String typeOfItem = inventory.getSlots().get(selectedProduct).get(0).getType();
 	    
 	    
-	   //allow purchasing for items 
+	   //allow purchasing for items if balance allows 
 	    if (balance >= priceOfItem) {
+	    	//time stamp log of allowed purchase 
 	    	DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
 	    	String dateString = dateFormat.format(new Date()).toString();
 	    	Log thisAudit = new Log(dateString, itemPurchased + " " + selectedProduct, balance, balance - priceOfItem);
@@ -136,10 +144,7 @@ public class VendingMachineClass {
 	    	
 	    	//adds data to sales report
 			sales.put(inventory.getSlots().get(selectedProduct).get(0).getName(), (int)5 - inventory.getSlots().get(selectedProduct).size() + 1);
-	   		
-			
 			inventory.getSlots().get(selectedProduct).remove(0);
-	   		stock--;
 	   		System.out.println();
 	   		typesOfItems.add(typeOfItem);
 	   		
@@ -155,16 +160,17 @@ public class VendingMachineClass {
 	//part 3 of the purchase menu - "finish transaction"
 	public static void exitOut() {
 		
-		//if item is sold out 
+		//if item is sold out, exit out 
 		boolean priceOfItemEmpty = inventory.getSlots().get(selectedProduct).size() <= 0;
 		if(priceOfItemEmpty) {
 			return;
 		}
 		
-		//double priceOfItem1 = inventory.getSlots().get(selectedProduct).get(0).getPrice();
+		//exiting messages to user
 		System.out.println("Thank you for your purchase!");
 		System.out.printf("Your remaining balance is $%.2f", balance);
 		System.out.println();
+		
 		//convert dollars to cents
 		double change = balance * 100; 
 		
@@ -177,6 +183,8 @@ public class VendingMachineClass {
 
 		double nickels = change / 5;      
 		change = change % 5;   
+		
+		//time stamp for change given
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
 	    String dateString = dateFormat.format(new Date()).toString();
 	    Log thisAudit = new Log(dateString, "GIVE CHANGE: ", balance, 0.00);
@@ -190,7 +198,7 @@ public class VendingMachineClass {
 		System.out.println("Nickels: " + (int)nickels);
 		
 		
-		//loop through the listArray to match the types of items with sentences 
+		//loop through the listArray to match the types of items with output sentences 
 		for(int i = 0; i < typesOfItems.size(); i++) {
 			if(typesOfItems.get(i).equals("Chip")) {
 				System.out.println("Crunch Crunch, Yum!");
@@ -206,9 +214,12 @@ public class VendingMachineClass {
 			}
 		}
 		System.out.println("It was a pleasure to serve you today.");
-		//must have this to close out the writer 
+		
+		//must have this to close out the writer and avoid data leaks
 		writer.close();
 	} 
+	
+	//method for final sale report 
 	public static void printSales() {
 		System.out.println();
 		System.out.println("**SALES REPORT**");

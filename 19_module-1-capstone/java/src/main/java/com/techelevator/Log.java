@@ -51,6 +51,7 @@ public class Log {
 	@Override
 	public String toString() {
 		
+		//formatting for toString to print 2 decimal places for log 
 		DecimalFormat format = new DecimalFormat("#.00");
 		
 		return timeNow + " " + currentStep + " $" + format.format(theBalanceBefore)
